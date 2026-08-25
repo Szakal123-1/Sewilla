@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lista rezerwowa – Sewilla 2026</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #ffcc70, #ff8177);
+    min-height: 100vh;
+    color: #333;
+}
+
+.container {
+    max-width: 760px;
+    margin: 40px auto;
+    padding: 15px;
+}
+
+.card {
+    background: white;
+    border-radius: 22px;
+    padding: 30px;
+    box-shadow: 0 15px 45px rgba(0,0,0,.2);
+}
+
+h1 {
+    text-align: center;
+    color: #b33939;
+    margin-bottom: 5px;
+}
+
+.subtitle {
+    text-align: center;
+    color: #777;
+    margin-bottom: 25px;
+}
+
+.info {
+    background: #fff4d6;
+    padding: 16px;
+    border-radius: 12px;
+    text-align: center;
+    margin-bottom: 22px;
+}
+
+.person {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #f7f7f7;
+    border: 1px solid #e5e5e5;
+    border-radius: 12px;
+    padding: 15px;
+    margin: 9px 0;
+}
+
+.person.lukasz {
+    cursor: pointer;
+    background: #fff3df;
+    border: 2px solid #e67e22;
+    transition: .2s;
+}
+
+.person.lukasz:hover {
+    transform: translateY(-2px);
+    background: #ffe8c2;
+}
+
+.name {
+    font-weight: bold;
+}
+
+.status {
+    background: #f5cd79;
+    color: #624600;
+    border-radius: 20px;
+    padding: 7px 11px;
+    font-size: 12px;
+}
+
+.click {
+    color: #b33939;
+    font-size: 12px;
+    margin-left: 8px;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,.65);
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    z-index: 10;
+}
+
+.modal-box {
+    background: white;
+    width: 100%;
+    max-width: 500px;
+    border-radius: 20px;
+    padding: 30px;
+    position: relative;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.close {
+    position: absolute;
+    right: 18px;
+    top: 10px;
+    font-size: 30px;
+    color: #777;
+    cursor: pointer;
+}
+
+h2 {
+    color: #b33939;
+}
+
+label {
+    display: block;
+    margin-top: 15px;
+    margin-bottom: 6px;
+    font-weight: bold;
+}
+
+input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 9px;
+    font-size: 15px;
+}
+
+.warning {
+    background: #fff0f0;
+    border-left: 4px solid #e74c3c;
+    padding: 12px;
+    margin: 15px 0;
+    font-size: 13px;
+}
+
+button {
+    width: 100%;
+    border: none;
+    border-radius: 10px;
+    padding: 14px;
+    margin-top: 20px;
+    background: #b33939;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #8f2d2d;
+}
+
+.success {
+    display: none;
+    text-align: center;
+    background: #e1f8e7;
+    color: #22753b;
+    border-radius: 12px;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+.booking-number {
+    font-size: 22px;
+    font-weight: bold;
+    margin-top: 10px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+<div class="card">
+
+<h1>✈️ Wyjazd do Sewilli</h1>
+<p class="subtitle">Październik 2026</p>
+
+<div class="info">
+    <strong>Lista rezerwowa</strong><br>
+    Wszystkie osoby są obecnie na liście rezerwowej.<br>
+    Kliknąć można tylko swoje nazwisko.
+</div>
+
+<div class="person lukasz" onclick="openForm()">
+    <span class="name">Łukasz Drapała</span>
+    <span>
+        <span class="status">Rezerwowa</span>
+        <span class="click">Kliknij</span>
+    </span>
+</div>
+
+<div class="person">
+    <span class="name">Hubert Łyzen</span>
+    <span class="status">Rezerwowa</span>
+</div>
+
+<div class="person">
+    <span class="name">Anna Kowalska</span>
+    <span class="status">Rezerwowa</span>
+</div>
+
+<div class="person">
+    <span class="name">Piotr Nowak</span>
+    <span class="status">Rezerwowa</span>
+</div>
+
+<div class="person">
+    <span class="name">Marta Wiśniewska</span>
+    <span class="status">Rezerwowa</span>
+</div>
+
+<div class="person">
+    <span class="name">Kamil Wójcik</span>
+    <span class="status">Rezerwowa</span>
+</div>
+
+<div class="person">
+    <span class="name">Julia Kamińska</span>
+    <span class="status">Rezerwowa</span>
+</div>
+
+<div class="person">
+    <span class="name">Tomasz Lewandowski</span>
+    <span class="status">Rezerwowa</span>
+</div>
+
+<div class="person">
+    <span class="name">Natalia Zielińska</span>
+    <span class="status">Rezerwowa</span>
+</div>
+
+<div class="person">
+    <span class="name">Michał Szymański</span>
+    <span class="status">Rezerwowa</span>
+</div>
+
+<div class="person">
+    <span class="name">Karolina Woźniak</span>
+    <span class="status">Rezerwowa</span>
+</div>
+
+<div class="person">
+    <span class="name">Paweł Dąbrowski</span>
+    <span class="status">Rezerwowa</span>
+</div>
+
+<div class="person">
+    <span class="name">Oliwia Kozłowska</span>
+    <span class="status">Rezerwowa</span>
+</div>
+
+<div class="person">
+    <span class="name">Mateusz Jankowski</span>
+    <span class="status">Rezerwowa</span>
+</div>
+
+<div class="person">
+    <span class="name">Zuzanna Mazur</span>
+    <span class="status">Rezerwowa</span>
+</div>
+
+<div class="person">
+    <span class="name">Jakub Krawczyk</span>
+    <span class="status">Rezerwowa</span>
+</div>
+
+<div class="person">
+    <span class="name">Wiktoria Piotrowska</span>
+    <span class="status">Rezerwowa</span>
+</div>
+
+<div class="person">
+    <span class="name">Szymon Grabowski</span>
+    <span class="status">Rezerwowa</span>
+</div>
+
+<div class="person">
+    <span class="name">Amelia Pawlak</span>
+    <span class="status">Rezerwowa</span>
+</div>
+
+<div class="person">
+    <span class="name">Maciej Michalski</span>
+    <span class="status">Rezerwowa</span>
+</div>
+
+<div class="person">
+    <span class="name">Oliwia Kozłowska</span>
+    <span class="status">Rezerwowa</span>
+</div>
+
+<div class="person">
+    <span class="name">Mateusz Jankowski</span>
+    <span class="status">Rezerwowa</span>
+</div>
+
+<div class="person">
+    <span class="name">Zuzanna Mazur</span>
+    <span class="status">Rezerwowa</span>
+</div>
+
+<div class="person">
+    <span class="name">Jakub Krawczyk</span>
+    <span class="status">Rezerwowa</span>
+</div>
+
+<div class="person">
+    <span class="name">Wiktoria Piotrowska</span>
+    <span class="status">Rezerwowa</span>
+</div>
+
+<div class="person">
+    <span class="name">Szymon Grabowski</span>
+    <span class="status">Rezerwowa</span>
+</div>
+
+</div>
+</div>
+
+
+<!-- FORMULARZ -->
+
+<div class="modal" id="modal">
+
+<div class="modal-box">
+
+<span class="close" onclick="closeForm()">×</span>
+
+<h2>Potwierdzenie rezerwacji</h2>
+
+<p>
+<strong>Łukasz Drapała</strong>
+</p>
+
+<p>
+Uzupełnij dane potrzebne.
+</p>
+
+<div class="warning">
+<strong></strong><br>
+Wpisz swój PESEL,oraz dane bankowe.
+</div>
+
+<form onsubmit="confirmBooking(event)">
+
+<label>Imię</label>
+<input type="text"
+       placeholder="Np. Anna"
+       required>
+
+<label>Nazwisko</label>
+<input type="text"
+       placeholder="Np. Kowalska"
+       required>
+
+<label>Adres e-mail</label>
+<input type="email"
+       placeholder="twoj@email.pl"
+       required>
+
+<label>Miejscowość zamieszkania</label>
+<input type="text"
+       placeholder="Np. Rzeszów"
+       required>
+
+<label>Imiona rodziców</label>
+<input type="text"
+       placeholder="np. Kasia Kowalska"
+       required>
+
+<label>PESEL</label>
+<input type="text"
+       inputmode="numeric"
+       maxlength="11"
+       placeholder="Np. 00000000000"
+       required>
+
+<label>Numer rachunku bankowego</label>
+<input type="text"
+       inputmode="numeric"
+       placeholder="Np. 00000000000000000000000000"
+       required>
+
+<button type="submit">
+    ✓ Potwierdź udział
+</button>
+
+</form>
+
+<div class="success" id="success">
+
+    <h2>🎉 Rezerwacja potwierdzona!</h2>
+
+    <p>
+        Łukasz Drapała został zgłoszony do dalszego etapu rezerwacji.
+    </p>
+
+    <p>Twój numer rezerwacji:</p>
+
+    <div class="booking-number" id="bookingNumber"></div>
+
+</div>
+
+</div>
+</div>
+
+
+<script>
+
+function openForm() {
+    document.getElementById("modal").style.display = "flex";
+}
+
+function closeForm() {
+    document.getElementById("modal").style.display = "none";
+}
+
+function confirmBooking(event) {
+
+    event.preventDefault();
+
+    const number =
+        "SEV-" +
+        Math.floor(100000 + Math.random() * 900000);
+
+    document.getElementById("bookingNumber").textContent = number;
+
+    document.querySelector("form").style.display = "none";
+
+    document.getElementById("success").style.display = "block";
+}
+
+window.onclick = function(event) {
+
+    const modal = document.getElementById("modal");
+
+    if (event.target === modal) {
+        closeForm();
+    }
+
+};
+
+</script>
+
+</body>
+</html>
